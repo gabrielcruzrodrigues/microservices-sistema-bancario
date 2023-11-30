@@ -11,3 +11,14 @@ eureka:
       defaultZone: http://${NAME_EUREKA_SECURITY}:${PASSWORD_EUREKA_SECURITY}@localhost:8761/eureka/
   instance:
     instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+#actuator config
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  file:
+    name: ./logs/log-file.log
