@@ -24,13 +24,13 @@ public class ClientController {
 
     @GetMapping
     public String status() {
-        log.info("obtendo o status do microservic3e de clientes");
         return "ok";
     }
 
     @PostMapping
     public ResponseEntity<Client> save(@RequestBody ClientDTO request) {
         Client client = clientService.save(request);
+        log.info("novo cliente salvo no banco de dados.");
         URI headerLocation = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .query("cpf={cpf}")
