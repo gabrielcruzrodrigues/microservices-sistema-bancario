@@ -1,6 +1,6 @@
 package io.github.cursodsouza.msavaliadorcredito.infra.clients;
 
-import io.github.cursodsouza.msavaliadorcredito.domain.model.DadosCliente;
+import io.github.cursodsouza.msavaliadorcredito.domain.DTO.DadosClienteDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface ClientesResourcesClient {
 
     @GetMapping(params = "cpf")
-    ResponseEntity<DadosCliente> clientData(@RequestParam("cpf") String cpf);
+    ResponseEntity<DadosClienteDTO> clientData(@RequestParam("cpf") String cpf);
 }

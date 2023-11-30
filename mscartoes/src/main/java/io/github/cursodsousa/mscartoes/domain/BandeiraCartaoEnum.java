@@ -1,5 +1,5 @@
 package io.github.cursodsousa.mscartoes.domain;
 
-public enum BandeiraCartao {
+public enum BandeiraCartaoEnum {
     MASTERCARD, VISA
 }

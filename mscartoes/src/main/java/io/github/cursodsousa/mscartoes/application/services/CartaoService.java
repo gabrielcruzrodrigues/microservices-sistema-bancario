@@ -1,8 +1,8 @@
 package io.github.cursodsousa.mscartoes.application.services;
 
 import io.github.cursodsousa.mscartoes.domain.Cartao;
-import io.github.cursodsousa.mscartoes.domain.CartaoDTO;
-import io.github.cursodsousa.mscartoes.exceptions.CartaoNotFoundException;
+import io.github.cursodsousa.mscartoes.domain.DTO.CartaoRegisterDTO;
+import io.github.cursodsousa.mscartoes.application.services.exceptions.CartaoNotFoundException;
 import io.github.cursodsousa.mscartoes.infra.repository.CartaoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class CartaoService {
     private final CartaoRepository cartaoRepository;
 
     @Transactional
-    public Cartao save(CartaoDTO cartao) {
+    public Cartao save(CartaoRegisterDTO cartao) {
         return cartaoRepository.save(cartao.toModel());
     }
 

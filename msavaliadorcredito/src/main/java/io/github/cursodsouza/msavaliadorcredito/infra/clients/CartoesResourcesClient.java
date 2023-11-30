@@ -1,7 +1,7 @@
 package io.github.cursodsouza.msavaliadorcredito.infra.clients;
 
-import io.github.cursodsouza.msavaliadorcredito.domain.model.Cartao;
-import io.github.cursodsouza.msavaliadorcredito.domain.model.CartaoCliente;
+import io.github.cursodsouza.msavaliadorcredito.domain.Cartao;
+import io.github.cursodsouza.msavaliadorcredito.domain.CartaoCliente;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

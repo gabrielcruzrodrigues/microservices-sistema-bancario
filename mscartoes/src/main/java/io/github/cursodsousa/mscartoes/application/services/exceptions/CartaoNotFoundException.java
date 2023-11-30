@@ -1,4 +1,4 @@
-package io.github.cursodsousa.mscartoes.exceptions;
+package io.github.cursodsousa.mscartoes.application.services.exceptions;
 
 public class CartaoNotFoundException extends RuntimeException {
     public CartaoNotFoundException() {

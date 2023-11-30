@@ -1,5 +1,6 @@
-package io.github.cursodsouza.msavaliadorcredito.domain.model;
+package io.github.cursodsouza.msavaliadorcredito.domain;
 
+import io.github.cursodsouza.msavaliadorcredito.domain.DTO.DadosClienteDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class SituacaoCliente {
-    private DadosCliente cliente;
+    private DadosClienteDTO cliente;
     private List<CartaoCliente> cartoes;
 }

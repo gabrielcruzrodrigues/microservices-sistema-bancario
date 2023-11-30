@@ -1,12 +1,11 @@
-package io.github.cursodsouza.msavaliadorcredito.domain.model;
+package io.github.cursodsouza.msavaliadorcredito.domain.DTO;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.math.BigDecimal;
 
 @Data
-public class CartaoAprovado {
+public class CartaoAprovadoDTO {
     private String cartao;
     private String bandeira;
     private BigDecimal limiteAprovado;

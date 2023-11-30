@@ -3,9 +3,9 @@ package io.github.cursodsousa.mscartoes.application.controllers;
 import io.github.cursodsousa.mscartoes.application.services.CartaoService;
 import io.github.cursodsousa.mscartoes.application.services.ClienteCartaoService;
 import io.github.cursodsousa.mscartoes.domain.Cartao;
-import io.github.cursodsousa.mscartoes.domain.CartaoDTO;
-import io.github.cursodsousa.mscartoes.domain.CartoesPorClienteResponse;
-import io.github.cursodsousa.mscartoes.domain.ClienteCartao;
+import io.github.cursodsousa.mscartoes.domain.DTO.CartaoRegisterDTO;
+import io.github.cursodsousa.mscartoes.domain.DTO.CartaoLiberadoParaClienteResponseDTO;
+import io.github.cursodsousa.mscartoes.domain.CartaoCliente;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +33,7 @@ public class CartaoControllers {
     }
 
     @PostMapping
-    public ResponseEntity<Object> cadastro(@RequestBody CartaoDTO request) {
+    public ResponseEntity<Object> cadastro(@RequestBody CartaoRegisterDTO request) {
         cartaoService.save(request);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -45,10 +45,10 @@ public class CartaoControllers {
     }
 
     @GetMapping(params = "cpf")
-    public ResponseEntity<List<CartoesPorClienteResponse>> getCartoesByCliente(@RequestParam("cpf") String cpf) {
-        List<ClienteCartao> list = clienteCartaoService.listarCartoesPorCpf(cpf);
-        List<CartoesPorClienteResponse> resultList = list.stream()
-                .map(CartoesPorClienteResponse::fromModel)
+    public ResponseEntity<List<CartaoLiberadoParaClienteResponseDTO>> getCartoesByCliente(@RequestParam("cpf") String cpf) {
+        List<CartaoCliente> list = clienteCartaoService.listarCartoesPorCpf(cpf);
+        List<CartaoLiberadoParaClienteResponseDTO> resultList = list.stream()
+                .map(CartaoLiberadoParaClienteResponseDTO::fromModel)
                 .collect(Collectors.toList());
         return ResponseEntity.ok().body(resultList);
     }

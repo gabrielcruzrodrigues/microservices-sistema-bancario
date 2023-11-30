@@ -1,4 +1,4 @@
-package io.github.cursodsouza.msavaliadorcredito.domain.model;
+package io.github.cursodsouza.msavaliadorcredito.domain;
 
 import lombok.Data;
 
