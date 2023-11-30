@@ -7,12 +7,14 @@ import io.github.cursodsousa.mscartoes.domain.Cartao;
 import io.github.cursodsousa.mscartoes.domain.ClienteCartao;
 import io.github.cursodsousa.mscartoes.domain.DadosSolicitacaoEmissaoCartao;
 import io.github.cursodsousa.mscartoes.infra.repository.ClienteCartaoRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 public class EmissaoCartaoSubscriber {
 
@@ -28,9 +30,8 @@ public class EmissaoCartaoSubscriber {
             DadosSolicitacaoEmissaoCartao cartao = convertIntoDadosSolicitacaoEmissaoCartao(payload);
             cadastrarNovoCartao(cartao);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            log.error("Error ao receber solicitação de novo cartão: {}", ex.getMessage());
         }
-
     }
 
     private DadosSolicitacaoEmissaoCartao convertIntoDadosSolicitacaoEmissaoCartao(String payload) throws JsonProcessingException {
