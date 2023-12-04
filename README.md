@@ -5,5 +5,5 @@ microserviço keyclock para authenticação via token jwt<br>
 <br><br>
 microserviço rabbirMQ para sistema de mensageria:<br>
 ```docker run -it --name msrabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.12-management```<br>
-nome da fila para o avaliador de credito com rabbitMQ:<br>
+nome da queue para o avaliador de credito com rabbitMQ:<br>
 ```emissao-cartoes```
