@@ -22,7 +22,7 @@ eureka:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://${NAME_EUREKA_SECURITY}:${PASSWORD_EUREKA_SECURITY}@localhost:8761/eureka
+      defaultZone: http://user:user@localhost:8761/eureka
 
 #actuator config
 management:

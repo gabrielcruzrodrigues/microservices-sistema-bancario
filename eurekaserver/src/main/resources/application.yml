@@ -5,8 +5,8 @@ spring:
     basic:
       enabled: true
     user:
-      name: ${NAME_EUREKA_SECURITY}
-      password: ${PASSWORD_EUREKA_SECURITY}
+      name: user
+      password: user
 
 server:
   port: 8761
