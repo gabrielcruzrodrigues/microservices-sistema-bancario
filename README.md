@@ -23,7 +23,7 @@ imagem docker do keyclock para authenticação via token jwt:<br>
 7. na coluna settings, na área Access settings, encontre o campo ```Valid redirect URIs``` e adicione a url ```http://localhost:8080```, não esqueça de salvar as alterações.
 <br><br>
 ### configurando a api para se authenticar com o keycloak:<br>
-1. procure pelo campo ```Realm settings```, na coluna ```general``` clique em ```OpenID Endpoint Configuration```
+1. no painel do keycloak procure pelo campo ```Realm settings```, na coluna ```general``` clique em ```OpenID Endpoint Configuration```
 2. das urls que vão aparecer, copie a url da chave ```"issuer"```: ```http://localhost:8081/realms/sistema-bank```
 3. dentro do microserviço gateway, navegue ate o arquivo ```aplication.yml``` e adicione o conteudo do campo ```"issuer"``` no campo ```issuer-uri```, dentro da chave ```security```
 
@@ -33,3 +33,14 @@ imagem docker do rabbirMQ para sistema de mensageria:<br>
 ```docker run -it --name msrabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.12-management```<br>
 nome da queue para o avaliador de credito com rabbitMQ:<br>
 ```emissao-cartoes```
+<br><br>
+## endpoints
+### * GET - gerar token JWT para conseguir acessar as rotas
+  * para conseguir o token, vc precisa usar o Oauth2, se estiver no postman, vá até a coluna ```authorization```, selecione ```Oauth2```<br>, então vão aparecer alguns campos a serem preenchidos.
+1. no campo ```Grant type```, altere para ```client credentials```<br>
+2. no painel do keycloak procure por ```Realm settings```, na coluna ```general``` clique em ```OpenID Endpoint Configuration```
+3. das urls que vão aparecer, copie a url da chave ```"token_endpoint"```: ```http://localhost:8081/realms/sistema-bank/protocol/openid-connect/token``` e cole no campo ```Access Token URL``` no formulário de requisição do postman<br>
+4. no painel do keycloak procure por ```Clients```, selecione o cliente que você criou no momento de configurar o keycloak, copie o seu ```Client ID``` e cole no campo ```Client ID``` no formulário de requisição do postman<br>
+5. no painel do keycloak procure por ```Clients > Credentials```, copie a ```Client Secret``` e cole no campo ```Client Secret``` no formulário de requisição do postman<br>
+6. clique em ```get new access token```
+
