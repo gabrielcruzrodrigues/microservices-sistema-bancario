@@ -47,6 +47,7 @@ acesse o terminal na pasta raiz do microserviço e execute o seguinte codigo:<br
 ```docker run --name NomeAleatorioDoConteiner -p 8761:8761 NomeDaImagemCriada```<br><br>
 OBS: as portas devem variar para não gerar conflito.<br>
 
+<br><br>
 ## endpoints
 ### * GET - gerar token JWT para conseguir acessar as rotas
   * para conseguir o token, vc precisa usar o Oauth2, se estiver no postman, vá até a coluna ```authorization```, selecione ```Oauth2```<br>, então vão aparecer alguns campos a serem preenchidos.
