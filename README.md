@@ -2,8 +2,10 @@
 ## sistema bancario utilizando a arquitetura de microsserviços<br>
 ## keycloak - authentication
 imagem docker do keyclock para authenticação via token jwt:<br>
-```docker run --name mskeyclock -p 8081:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:23.0.1 start-dev```<br><br>
+```docker run --name mskeyclock -p 8081:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:23.0.1 start-dev```
+
 ### Configurando o keyclock:<br>
+
 1. inicie a imagem docker na sua maquina.
 2. acesse o painel do keycloak ``` http://localhost:8081 ``` e utilize ```usuario: admin```, ```senha: admin```
 3. crie um novo realm, pode dar a ele o nome que desejar, ele ira representar a aplicação que quer ser authenticada.
@@ -33,7 +35,18 @@ imagem docker do rabbirMQ para sistema de mensageria:<br>
 ```docker run -it --name msrabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.12-management```<br>
 nome da queue para o avaliador de credito com rabbitMQ:<br>
 ```emissao-cartoes```
+
 <br><br>
+## gerando imagem docker dos microserviços
+Os microserviços contem um Dockerfile que permite gerar um container docker do microserviço, facilitando a criação de novas instancias e economizando processamento da maquina, pois vc não precisaria da IDE para rodar o codigo.<br>
+### criar imagem do microserviço
+acesse o terminal na pasta raiz do microserviço e execute o seguinte codigo:<br>
+```docker build --tag NomeAleatórioDoContainer .```<br>
+### iniciar o container do microserviço
+acesse o terminal na pasta raiz do microserviço e execute o seguinte codigo:<br>
+```docker run --name NomeAleatorioDoConteiner -p 8761:8761 NomeDaImagemCriada```<br><br>
+OBS: as portas devem variar para não gerar conflito.<br>
+
 ## endpoints
 ### * GET - gerar token JWT para conseguir acessar as rotas
   * para conseguir o token, vc precisa usar o Oauth2, se estiver no postman, vá até a coluna ```authorization```, selecione ```Oauth2```<br>, então vão aparecer alguns campos a serem preenchidos.
