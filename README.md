@@ -62,6 +62,13 @@ OBS: as portas devem variar para não gerar conflito.<br>
 5. no painel do keycloak procure por ```Clients > Credentials```, copie a ```Client Secret``` e cole no campo ```Client Secret``` no formulário de requisição do postman<br>
 6. clique em ```get new access token```
 
+<br>
+
+### * Inserir token para liberar rotas
+O token sera inserido no modelo Bearer token, se estiver utilizando o postman, pode seguir os seguintes passos:
+1. procure pela coluna Authorization.
+2. selecione o tipo(type) Bearer token.
+3. insira o token gerado no passo acima no campo ```token```.
 -----------------------------------------
 
 ### Clientes endpoints
