@@ -23,11 +23,14 @@ imagem docker do keyclock para authenticação via token jwt:<br>
     * OAuth 2.0 Device Authorization Grant
     * OIDC CIBA Grant
 7. na coluna settings, na área Access settings, encontre o campo ```Valid redirect URIs``` e adicione a url ```http://localhost:8080```, não esqueça de salvar as alterações.
-<br><br>
+
+
+
 ### configurando a api para se authenticar com o keycloak:<br>
 1. no painel do keycloak procure pelo campo ```Realm settings```, na coluna ```general``` clique em ```OpenID Endpoint Configuration```
 2. das urls que vão aparecer, copie a url da chave ```"issuer"```: ```http://localhost:8081/realms/sistema-bank```
 3. dentro do microserviço gateway, navegue ate o arquivo ```aplication.yml``` e adicione o conteudo do campo ```"issuer"``` no campo ```issuer-uri```, dentro da chave ```security```
+
 
 <br><br>
 ## rabbitMQ - sistema de mensageria
@@ -36,8 +39,9 @@ imagem docker do rabbirMQ para sistema de mensageria:<br>
 nome da queue para o avaliador de credito com rabbitMQ:<br>
 ```emissao-cartoes```
 
+
 <br><br>
-## gerando imagem docker dos microserviços
+## gerando imagem docker dos microserviços se preferir
 Os microserviços contem um Dockerfile que permite gerar um container docker do microserviço, facilitando a criação de novas instancias e economizando processamento da maquina, pois vc não precisaria da IDE para rodar o codigo.<br>
 ### criar imagem do microserviço
 acesse o terminal na pasta raiz do microserviço e execute o seguinte codigo:<br>
@@ -58,3 +62,76 @@ OBS: as portas devem variar para não gerar conflito.<br>
 5. no painel do keycloak procure por ```Clients > Credentials```, copie a ```Client Secret``` e cole no campo ```Client Secret``` no formulário de requisição do postman<br>
 6. clique em ```get new access token```
 
+-----------------------------------------
+
+### Clientes endpoints
+Cadastrar novo cliente:<br>
+```POST /clientes - response code: 201 - body request:```
+```
+{
+	"name": "gabriel",
+	"cpf": "16821773009",
+	"age": 21
+}
+```
+<br>
+
+Buscar cliente por cpf:<br>
+```GET /clientes?cpf=00000000000 - response code: 200 - request params: cpf válido```
+
+-----------------------------------------
+### Cartões endpoints
+Cadastrar novo cartão: <br>
+```POST /cartoes - response code: 201 - body request```
+```
+{
+	"name": "Master Black",
+	"bandeira": "MASTERCARD", //MASTERCARD OU VISA
+	"renda": 2000, //renda necessária para o cliente ter o cartão
+	"limiteBasico": 3500
+}
+```
+<br>
+
+Listar todos os cartões cadastrados:<br>
+```GET /cartoes/findAll - response code: 200```<br>
+
+<br>
+
+Filtrar cartões por renda:<br>
+```GET /cartoes?renda=5000 - response code: 200 - request param: limite máximo buscado```<br>
+
+<br>
+
+Listar cartões de um cliente pelo cpf:<br>
+```GET /cartoes?cpf=12345678910 - response code: 200 - request param: cpf de um cliente cadastrado```<br>
+
+-----------------------------------------
+### Avaliador Crédito endpoint
+Analizar a situação do cliente:<br>
+```GET /avaliacoes-credito/situacao-cliente?cpf=01234567890 - response code: 200 - request param: cpf do cliente```<br>
+
+<br>
+
+Avaliação de crédito do cliente:<br>
+```POST /avaliacoes-credito - request code: 201 - request body:```
+```
+{
+    "cpf": 12345678910,
+    "renda": 2000
+}
+```
+
+<br>
+
+Solicitar cartão para o cliente:<br>
+```POST /avaliacoes-credito/solicitacoes-cartao - response cody: 200 - request body:```
+```
+{
+    "idCartao": 1, //id de um cartão já registrado
+    "cpf": "16821773009",
+    "endereco": "algum endereco fictício", 
+    "limiteLiberado": 2000
+}
+```
+Retorna numero de protocolo
